@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ulraq.net.nz/thymeleaf/layout"
+layout:decorator="layout">
+<head>
+<meta charset="utf-8"/>
+<title>Clients</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body layout:fragment="content">
+<div class="container">
+		<div class=" panel-default">
+			<div class="panel-heading">confirmation</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label>Code:</label>
+					<label th:text="${client.code}"></label>
+				</div>
+				<div class="form-group">
+					<label>Nom :</label>
+					<label th:text="${client.nom}"></label>
+				</div>
+				<div class="form-group">
+					<label>Email :</label>
+					<label th:text="${client.email}"></label>
+				</div>
+			
+			</div>	
+		</div>
+	</div>
+
+</body>
+</html>

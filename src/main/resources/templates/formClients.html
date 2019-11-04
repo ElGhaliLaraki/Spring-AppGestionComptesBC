@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+       layout:decorator="layout">
+<div layout:fragment="content">
+   <div class="col-md-6 col-md-offset-3">
+   <div class="panel panel-primary">
+	     <div class="panel panel-heading padding">Consultation d'un Client
+	    <a class="btn btn-default pull-right" th:href="@{/ajouterClient}" sec:authorize="hasRole('ROLE_ADMIN')">Ajouter Client</a>
+	     </div>
+	     <div class="panel panel-body">
+	       <form th:action="@{/consulterclient}" method="get">
+               <div class="input-group">
+                   <input type="text" class="form-control" th:value="${motCle}" id="motCle" name="motCle" placeholder="taper ici code client"  />
+                     <span class="input-group-btn">
+                           <button class="btn btn-default" type="submit" name="rechercher">OK
+                            <!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->
+                           </button>
+                     </span>
+              </div>
+	       </form>   
+	       <div class=" espace" th:if="${clients}">
+              <table class="table table-striped ">
+                  <thead>
+                  <tr><th>Code</th><th>nom</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="c:${clients}">
+                      <td th:text="${c.code}"></td>
+                      <td th:text="${c.nom}"></td>
+                      <td><a th:href="@{/addCompte(codeClient=${c.code})}">Add Compte</a></td>
+                      
+                    </tr>
+                  </tbody>
+              </table>	  
+               
+             <!--  <div>
+                  <ul class="nav nav-pills" > 
+                      <li th:each="pg,status:${clients}" th:class="${status.index==pageCourant}?'active':''">
+                      <a th:href="@{/consultercompte(motCle=${client.code},page=${status.index})}" th:text="${status.index}">
+                      </a></li>
+                  </ul>
+              </div>   -->
+             </div>
+	     </div>    
+	       <div class="text-danger" th:if="${exception}" th:text="${exception.message}"></div>
+	     </div>    
+     </div>    
+
+  </div>
+</html>
